@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 
 import Menu from "../../components/Menu";
+import Footer from "../../components/Footer";
+
+import bg from '../../assets/images/bg.jpg'
 
 export default function Login() {
     return (
         <div className="container">
+            <div className="background">
+                <img src={bg} alt="" className="bg" />
+            </div>
             <Menu/>
             <div className="content">
                 <form className="login-box" noValidate="" autoComplete="off">
@@ -27,7 +33,7 @@ export default function Login() {
                     </section>
                 </form>
             </div>
-            <div className="footer">footer</div>
+            <Footer/>
         </div>
     );
 }
