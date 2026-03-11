@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import styles from "./styles.module.css";
 
 import Menu from "../../components/Menu";
 import Footer from "../../components/Footer";
 
 import bg from '../../assets/images/bg.jpg'
+import eye from '../../assets/images/eye.png'
+
+import styles from "./Login.style";
 
 export default function Login() {
+
     return (
         <div className="container">
             <div className="background">
@@ -14,21 +17,22 @@ export default function Login() {
             </div>
             <Menu/>
             <div className="content">
-                <form className="login-box" noValidate="" autoComplete="off">
-                    <h2 className="title">Login</h2>
-                    <section>
-                        <div className="email">
+                <form style={styles.loginBox} noValidate="" autoComplete="off">
+                    <h2 style={styles.title}>Login</h2>
+                    <section style={styles.section}>
+                        <div style={{paddingBottom: "1rem"}}>
                             <label className="title">Enter your email address</label>
-                            <input type="email" name="email" id="email" />
+                            <input style={styles.input} type="email" name="email" id="email" placeholder="Email address"/>
                         </div>
-                        <div className="password">
+                        <div style={{paddingBottom: "1rem"}}>
                             <label className="title">Enter your password</label>
-                            <input type="password" name="password" id="password" />
+                            <input style={styles.input}  type="password" name="password" id="password" placeholder="Password" />
+                            <img src={eye} style={{width: "30px", float: "right", position: "relative", top: "-40px", right: "10px"}} />
                         </div>
-                        <div><button className="login">Log in</button></div>
-                        <div className="box-footer">
-                            <a href="/" className="register">Register</a>
-                            <a href="/" className="forgot-password" style={{textAlign: "right"}}>Forgotten Password?</a>
+                        <div><button style={styles.button}>Log in</button></div>
+                        <div style={styles.boxFooter}>
+                            <a href="#" className="link">Register</a>
+                            <a href="#" className="link" style={{textAlign: "right"}}>Forgotten password?</a>
                         </div>
                     </section>
                 </form>
