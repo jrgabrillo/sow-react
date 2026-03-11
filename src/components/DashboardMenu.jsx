@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import logo from '../assets/images/diamond.png'
+import avatar from '../assets/images/avatar.png'
 import sweden from '../assets/images/sweden-flag.png'
 import brit from '../assets/images/brit-flag.png'
 
@@ -33,9 +33,9 @@ export default function DashboardMenu() {
         <div className="menu" style={{ background: "#137ee4", display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0 auto", padding: "1rem 2rem" }}>
             <div style={{ display: "flex", alignItems: "center" }} onClick={toggleMenu}>
                 <a href="#">
-                    <img src={logo} style={{ height: "2rem" }} />
+                    <img src={avatar} style={{ height: "4rem" }} />
                 </a>
-                <a href="#">
+                <a href="#" style={{margin: "0px"}}>
                     <p style={{margin: "0px"}}>Juan Dela Cruz</p>
                     <p style={{margin: "0px", fontSize: "12px"}}>Position</p>
                 </a>

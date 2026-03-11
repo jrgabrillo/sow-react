@@ -7,7 +7,7 @@ export default function Main() {
         <>
             <Menu />
             <SideNav />
-            <div className="container" style={{background: "#fff", height: "100%", color: "#000", padding: "10px 10px 10px 150px"}}>
+            <div className="container" style={{background: "#fff", height: "100%", color: "#000", padding: "0px 10px 0px 180px"}}>
                 contents here
             </div>
         </>

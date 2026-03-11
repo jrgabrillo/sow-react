@@ -171,6 +171,37 @@ button:focus-visible {
     margin: 10px 0px;
 }
 
+.sidenav .link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sidenav .link.disabled{
+    opacity: 0.5;
+}
+
+.sidenav .icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    margin: 0px 5px;
+}
+
+.sidenav .indicator{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.sidenav .indicator.active{
+    background-color: #4CAF50;
+}
+
 @media (max-width: 1024px) {
     
     .menu .sub-menu.mobile,
