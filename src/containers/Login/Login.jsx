@@ -28,7 +28,7 @@ export default function Login() {
                         <div><button className="login">Log in</button></div>
                         <div className="box-footer">
                             <a href="/" className="register">Register</a>
-                            <a href="/" className="forgot-password">Forgotten Password?</a>
+                            <a href="/" className="forgot-password" style={{textAlign: "right"}}>Forgotten Password?</a>
                         </div>
                     </section>
                 </form>
