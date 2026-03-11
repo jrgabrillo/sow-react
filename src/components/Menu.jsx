@@ -33,7 +33,7 @@ export default function Menu() {
         <div className="menu">
             <div style={{display: "flex", justifyContent: "space-between", width: "75%", margin: "0 auto", padding: "2.5rem 0rem"}}>
                 <div className="logo" onClick={toggleMenu}>
-                    <a href="/"><img src={logo}  style={{height: "2rem"}} /></a>
+                    <a href="#"><img src={logo}  style={{height: "2rem"}} /></a>
                     <a href="#" className="icon">
                         <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="navigation-svg" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
