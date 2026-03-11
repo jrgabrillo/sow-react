@@ -13,6 +13,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+a{
+    text-decoration: none;
+}
+
 a.link {
     font-weight: 500;
     color: #000;
@@ -34,6 +38,10 @@ body {
 h1 {
     font-size: 3.2em;
     line-height: 1.1;
+}
+
+.sidenav a{
+    margin: 20px 0px 0px 0px
 }
 
 button {
