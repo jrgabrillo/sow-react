@@ -333,9 +333,16 @@ table td input{
     border-radius: 10px;
 }
 
-table td:last-child{
+
+table td input[type="button"]:active{
+    color: #f00;
+}
+
+table td input[type="button"]{
     top: -10px;
     position: relative;
-    filter: invert(68%) sepia(74%) saturate(5351%) hue-rotate(160deg) brightness(93%) contrast(103%);
     font-size: xx-large;
+    background-color: transparent;
+    border: 0px;
+    color: #008974;
 }

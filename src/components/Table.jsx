@@ -59,7 +59,9 @@ export default function SortableTable({ data = [], callback }) {
                                 <input type="text" s style={{minWidth: `${col_size[col_i]}px`, width: "100%"}} onChange={(e) => {handleChange(i, col, e.target.value)}} value={row[col]} />
                             </td>
                         ))}
-                        <td>...</td>
+                        <td>
+                            <input type="button" value="..." />
+                        </td>
                     </tr>
                 ))}
             </tbody>
