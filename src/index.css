@@ -201,6 +201,7 @@ button:focus-visible {
 .sidenav .indicator.active{
     background-color: #4CAF50;
 }
+
 .filters > div > img{
     left: -35px;
     top: -10px;
@@ -218,13 +219,25 @@ button:focus-visible {
     width: 200px;
 }
 
-.actions button{
+.actions input[type=button]:active{
+    box-shadow: unset;
+}
+
+.actions input[type=button]:disabled{
+    background: #ccc;
+    box-shadow: unset;
+    opacity: 0.7;
+}
+
+.actions input[type=button]{
     background: white;
-    color: #aaa;
+    color: #000;
     height: 40px;
     box-shadow: 0px 0px 20px 0px #ccc;
     margin: 0px 10px;
     border: #ccc solid 1px;
+    border-radius: 10px;
+    padding: 0px 10px;
 }
 
 @media (max-width: 1024px) {
@@ -298,5 +311,31 @@ button:focus-visible {
     .login-box section {
         width: 80%;
     }
+}
 
+table tr th div{
+    position: absolute;
+    display: inline-block;
+    width: 10px;
+    margin: 0px 10px;
+    filter: invert(68%) sepia(74%) saturate(5351%) hue-rotate(160deg) brightness(93%) contrast(103%);
+}
+
+table tr th{
+    background: transparent;
+}
+
+table td input{
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #252525;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+table td:last-child{
+    top: -10px;
+    position: relative;
+    filter: invert(68%) sepia(74%) saturate(5351%) hue-rotate(160deg) brightness(93%) contrast(103%);
+    font-size: xx-large;
 }

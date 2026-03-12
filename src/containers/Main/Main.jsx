@@ -1,42 +1,56 @@
 import React, { useState, useEffect } from "react";
-import DataTable from 'datatables.net-dt';
 
 import Menu from "../../components/DashboardMenu";
 import SideNav from "../../components/SideMenu";
+import Table from "../../components/Table";
 
 import printing from '../../assets/images/printing.png'
 import search from '../../assets/images/search.png'
 import add from '../../assets/images/add.png'
 
+import Handsontable from 'handsontable';
+import { HotTable, HotColumn } from '@handsontable/react-wrapper';
+
+import 'handsontable/styles/handsontable.min.css';
+import 'handsontable/styles/ht-theme-main.min.css';
+
 var data = [
     {
-        id: "2",
-        name: "product1",
-        price: 100
+        article_no: "1",
+        product: "product1",
+        price: 100,
+        in_price: 100,
+        unit: 100,
+        in_stock: 100,
+        description: 100
+    },
+    {
+        article_no: "2",
+        product: "product2 product2pr oduct2prod uct2product2product 2product2product2",
+        price: 100,
+        in_price: 100,
+        unit: 100,
+        in_stock: 100,
+        description: 100
+    },
+    {
+        article_no: "3",
+        product: "product3",
+        price: 100,
+        in_price: 100,
+        unit: 100,
+        in_stock: 100,
+        description: 100
     }
 ]
-
 
 export default function Main() {
     const [priceList, setPriceList] = useState(data);
 
-    useEffect( () => {
+    useEffect(() => {
         console.log("test")
-        let table = new DataTable('#price-list', {
-            columns: [
-                { title: "ID", data: "id" },
-                { title: "Name", data: "name" },
-                { title: "Price", data: "price" }
-              ],
-            data: priceList,
-            paging: false,
-            searching: false
-        });
 
-        return () => {
-            table.destroy(); // cleanup when component rerenders
-          };
-    }, [priceList] )
+    }, [priceList])
 
     return (
         <>
@@ -49,14 +63,13 @@ export default function Main() {
                         <div style={{ display: "flex", alignItems: "flex-end" }}><input type="text" placeholder="Search Product" /><img style={{ width: "25px" }} src={search} alt="" /></div>
                     </div>
                     <div className="actions" style={{ display: "flex", flexDirection: "row" }}>
-                        <button>New Product</button>
-                        <button>Print List</button>
-                        <button>Advanced Mode</button>
+                        <input type="button" value="New Product" />
+                        <input type="button" value="Print List" />
+                        <input type="button" disabled value="Advanced Mode" />
                     </div>
                 </div>
-                <div style={{ padding: "0px 50px" }}>
-                    <table  className="display" id="price-list">
-                    </table>
+                <div style={{ padding: "0px 50px", display: "flex", justifyContent: "space-between"  }}>
+                    <Table data={priceList} callback={(data) => {console.log(data)}}/>
                 </div>
             </div>
         </>
