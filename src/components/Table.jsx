@@ -8,6 +8,7 @@ export default function SortableTable({ data = [], callback }) {
 
     const columns = Object.keys(tableData[0]);
     const col_size = [100, 200, 80, 80, 80, 80, 200]
+    const col_responsive = ["hide-smartphone-and-below","","","hide-tablet-and-below","hide-smartphone-and-below","hide-tablet-and-below","hide-tablet-and-below"]
 
     const handleChange = (index, column, value) => {
         const updated = [...tableData];
@@ -40,6 +41,7 @@ export default function SortableTable({ data = [], callback }) {
                 <tr>
                     {columns.map((col, i) => (
                         <th
+                            className={col_responsive[i]}
                             key={col}
                             onClick={() => sortTable(col)}
                             style={{ cursor: "pointer", textAlign: "left" }}
@@ -55,7 +57,7 @@ export default function SortableTable({ data = [], callback }) {
                 {tableData.map((row, i) => (
                     <tr key={i}>
                         {columns.map((col, col_i) => (
-                            <td key={col}>
+                            <td key={col} className={col_responsive[col_i]}>
                                 <input type="text" s style={{minWidth: `${col_size[col_i]}px`, width: "100%"}} onChange={(e) => {handleChange(i, col, e.target.value)}} value={row[col]} />
                             </td>
                         ))}
