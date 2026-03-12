@@ -13,7 +13,7 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -40,7 +40,7 @@ h1 {
     line-height: 1.1;
 }
 
-.sidenav a{
+.sidenav a {
     margin: 20px 0px 0px 0px
 }
 
@@ -112,11 +112,11 @@ button:focus-visible {
     color: #fff;
 }
 
-.menu .sub-menu.mobile{
+.menu .sub-menu.mobile {
     display: none;
 }
 
-.menu .sub-menu .selection{
+.menu .sub-menu .selection {
     display: flex;
     flex-direction: column;
 
@@ -140,7 +140,7 @@ button:focus-visible {
     align-items: center;
 }
 
-.flag{
+.flag {
     object-fit: cover;
     object-position: center center;
     width: 26px;
@@ -171,17 +171,17 @@ button:focus-visible {
     margin: 10px 0px;
 }
 
-.sidenav .link{
+.sidenav .link {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.sidenav .link.disabled{
+.sidenav .link.disabled {
     opacity: 0.5;
 }
 
-.sidenav .icon{
+.sidenav .icon {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -189,7 +189,7 @@ button:focus-visible {
     margin: 0px 5px;
 }
 
-.sidenav .indicator{
+.sidenav .indicator {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -198,18 +198,18 @@ button:focus-visible {
     align-items: center;
 }
 
-.sidenav .indicator.active{
+.sidenav .indicator.active {
     background-color: #4CAF50;
 }
 
-.filters > div > img{
+.filters>div>img {
     left: -35px;
     top: -10px;
     position: relative;
     filter: invert(68%) sepia(74%) saturate(5351%) hue-rotate(160deg) brightness(93%) contrast(103%);
 }
 
-.filters > div > input{
+.filters>div>input {
     background: white;
     color: #aaa;
     border: 1px solid #ccc;
@@ -219,17 +219,17 @@ button:focus-visible {
     width: 200px;
 }
 
-.actions input[type=button]:active{
+.actions input[type=button]:active {
     box-shadow: unset;
 }
 
-.actions input[type=button]:disabled{
+.actions input[type=button]:disabled {
     background: #ccc;
     box-shadow: unset;
     opacity: 0.7;
 }
 
-.actions input[type=button]{
+.actions input[type=button] {
     background: white;
     color: #000;
     height: 40px;
@@ -240,7 +240,14 @@ button:focus-visible {
     padding: 0px 10px;
 }
 
+.search-filter {
+    background: white url('./assets/images/search.png') right no-repeat !important;
+    background-size: 25px !important;
+    background-position: 99% 50% !important;
+}
+
 @media (max-width: 1024px) {
+
     .menu .sub-menu.mobile,
     .menu .nav .translation,
     .menu .nav .icon {
@@ -262,7 +269,7 @@ button:focus-visible {
         left: 10px;
     }
 
-    .menu .links.show{
+    .menu .links.show {
         display: flex !important;
     }
 
@@ -311,18 +318,41 @@ button:focus-visible {
         width: 80%;
     }
 
-    .hide-tablet-and-below{
+    .hide-tablet-and-below {
         display: none;
     }
 }
 
 @media (max-width: 768px) {
-    .hide-smartphone-and-below{
+    .actions{
+        justify-content: space-between;
+    }
+
+    .actions input{
+        margin: 0px !important;
+    }
+
+    .hide-smartphone-and-below {
         display: none;
     }
+
+    .container>div {
+        flex-direction: column;
+
+    }
+
+    .filters>div {
+        width: 100%;
+    }
+
+    .filters>div>input {
+        width: 100%;
+    }
+
+
 }
 
-table tr th div{
+table tr th div {
     position: absolute;
     display: inline-block;
     width: 10px;
@@ -330,11 +360,11 @@ table tr th div{
     filter: invert(68%) sepia(74%) saturate(5351%) hue-rotate(160deg) brightness(93%) contrast(103%);
 }
 
-table tr th{
+table tr th {
     background: transparent;
 }
 
-table td input{
+table td input {
     border: 1px solid #ccc;
     background-color: white;
     color: #252525;
@@ -343,11 +373,11 @@ table td input{
 }
 
 
-table td input[type="button"]:active{
+table td input[type="button"]:active {
     color: #f00;
 }
 
-table td input[type="button"]{
+table td input[type="button"] {
     top: -10px;
     position: relative;
     font-size: xx-large;

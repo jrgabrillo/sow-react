@@ -56,11 +56,11 @@ export default function Main() {
         <>
             <Menu />
             <SideNav />
-            <div className="container" style={{ background: "#fff", height: "100%", color: "#000", padding: "0px 0px 0px 210px" }}>
+            <div className="container" style={{ background: "#fff", height: "100%", color: "#000", padding: "0px", overflow: "scroll" }}>
                 <div style={{ padding: "20px 50px", display: "flex", justifyContent: "space-between" }}>
                     <div className="filters" style={{ display: "flex", flexDirection: "column" }}>
-                        <div style={{ display: "flex", alignItems: "flex-end" }}><input type="text" placeholder="Search Article No." /><img style={{ width: "25px" }} src={search} alt="" /></div>
-                        <div style={{ display: "flex", alignItems: "flex-end" }}><input type="text" placeholder="Search Product" /><img style={{ width: "25px" }} src={search} alt="" /></div>
+                        <div style={{ display: "flex", alignItems: "flex-end" }}><input type="text" placeholder="Search Article No." className="search-filter" /></div>
+                        <div style={{ display: "flex", alignItems: "flex-end" }}><input type="text" placeholder="Search Product" className="search-filter" /></div>
                     </div>
                     <div className="actions" style={{ display: "flex", flexDirection: "row" }}>
                         <input type="button" value="New Product" />
