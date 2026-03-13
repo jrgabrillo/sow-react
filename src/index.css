@@ -1,3 +1,24 @@
+@keyframes slide-in {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        left: 0%;
+    }
+
+    to {
+        left: -100%;
+    }
+}
+
+
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -99,7 +120,8 @@ button:focus-visible {
 }
 
 .menu .nav .translation,
-.menu .icon {
+.menu .icon,
+.mobile-menu {
     display: none;
 }
 
@@ -215,39 +237,51 @@ button:focus-visible {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 5px;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 200px;
 }
 
-.actions input[type=button]:active {
+.actions button:active {
     box-shadow: unset;
 }
 
-.actions input[type=button]:disabled {
+.actions button:disabled {
     background: #ccc;
     box-shadow: unset;
     opacity: 0.7;
 }
 
-.actions input[type=button] {
+.actions button {
     background: white;
     color: #000;
     height: 40px;
     box-shadow: 0px 0px 20px 0px #ccc;
     margin: 0px 10px;
-    border: #ccc solid 1px;
-    border-radius: 10px;
+    border: #fff solid 1px;
+    border-radius: 20px;
     padding: 0px 10px;
+    font-size: 12px;
 }
 
 .search-filter {
     background: white url('./assets/images/search.png') right no-repeat !important;
-    background-size: 25px !important;
-    background-position: 99% 50% !important;
+    background-size: 20px !important;
+    background-position: 95% 50% !important;
+}
+
+.sidenav {
+    animation-duration: 0.5s;
+    animation-name: slide-out;
+}
+
+.sidenav.show {
+    display: unset !important;
+    position: absolute;
+    animation-duration: 0.5s;
+    animation-name: slide-in;
 }
 
 @media (max-width: 1024px) {
-
     .menu .sub-menu.mobile,
     .menu .nav .translation,
     .menu .nav .icon {
@@ -318,17 +352,38 @@ button:focus-visible {
         width: 80%;
     }
 
-    .hide-tablet-and-below {
-        display: none;
+    .hide-tablet-and-below,
+    .avatar,
+    .sidenav {
+        display: none !important;
+    }
+
+    .mobile-menu {
+        display: unset;
+        margin: 0px !important;
     }
 }
 
 @media (max-width: 768px) {
-    .actions{
+    .actions {
         justify-content: space-between;
+        margin: 10px 0px;
     }
 
-    .actions input{
+    .actions button span{
+        display: none;
+    }
+
+    .actions button img{
+        filter: invert(68%) sepia(74%) saturate(5351%) hue-rotate(160deg) brightness(93%) contrast(103%);
+    }
+
+    .actions button {
+        margin: 0px !important;
+        width: 20%;
+    }
+
+    .actions input {
         margin: 0px !important;
     }
 
@@ -338,7 +393,6 @@ button:focus-visible {
 
     .container>div {
         flex-direction: column;
-
     }
 
     .filters>div {
@@ -349,7 +403,28 @@ button:focus-visible {
         width: 100%;
     }
 
+    .menu, .filters-actions, .table{
+        padding: 0.5rem !important;
+    }    
 
+    .filters-actions{
+        padding: 1rem !important;
+    }
+
+    table thead tr th:nth-child(2){
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 425px) {
+    table thead tr th:nth-child(2){
+        width: 40% !important;
+    }
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
 }
 
 table tr th div {
@@ -364,14 +439,22 @@ table tr th {
     background: transparent;
 }
 
+table td button.more-action{
+    background-size: contain !important;
+    height: 20px;
+    width: 20px;
+    border-radius: 0px;
+    padding: 0px;
+}
+
 table td input {
     border: 1px solid #ccc;
     background-color: white;
     color: #252525;
-    padding: 5px;
-    border-radius: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    width: stretch;
 }
-
 
 table td input[type="button"]:active {
     color: #f00;

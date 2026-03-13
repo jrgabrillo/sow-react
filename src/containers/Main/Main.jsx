@@ -7,12 +7,7 @@ import Table from "../../components/Table";
 import printing from '../../assets/images/printing.png'
 import search from '../../assets/images/search.png'
 import add from '../../assets/images/add.png'
-
-import Handsontable from 'handsontable';
-import { HotTable, HotColumn } from '@handsontable/react-wrapper';
-
-import 'handsontable/styles/handsontable.min.css';
-import 'handsontable/styles/ht-theme-main.min.css';
+import toggle from '../../assets/images/toggle-button.png'
 
 var data = [
     {
@@ -46,30 +41,40 @@ var data = [
 
 export default function Main() {
     const [priceList, setPriceList] = useState(data);
+    const [showMenu, setShowMenu] = useState(false);
 
     useEffect(() => {
         console.log("test")
-
-    }, [priceList])
+    }, [showMenu])
 
     return (
         <>
-            <Menu />
-            <SideNav />
+            <Menu callback={(nav) => { setShowMenu(nav) }} />
+            {/* <Menu callback={(nav) => {console.log(nav)}} /> */}
+            <SideNav show={showMenu} />
             <div className="container" style={{ background: "#fff", height: "100%", color: "#000", padding: "0px", overflow: "scroll" }}>
-                <div style={{ padding: "20px 50px", display: "flex", justifyContent: "space-between" }}>
+                <div className="filters-actions" style={{ padding: "20px 50px", display: "flex", justifyContent: "space-between" }}>
                     <div className="filters" style={{ display: "flex", flexDirection: "column" }}>
                         <div style={{ display: "flex", alignItems: "flex-end" }}><input type="text" placeholder="Search Article No." className="search-filter" /></div>
                         <div style={{ display: "flex", alignItems: "flex-end" }}><input type="text" placeholder="Search Product" className="search-filter" /></div>
                     </div>
                     <div className="actions" style={{ display: "flex", flexDirection: "row" }}>
-                        <input type="button" value="New Product" />
-                        <input type="button" value="Print List" />
-                        <input type="button" disabled value="Advanced Mode" />
+                        <button>
+                            <img src={add} alt="new product icon" width="25px" />
+                            <span>New Product</span>
+                        </button>
+                        <button>
+                            <img src={printing} alt="print icon" width="25px" />
+                            <span>Print List</span>
+                        </button>
+                        <button disabled>
+                            <img src={toggle} alt="print icon" width="25px" />
+                            <span>Advanced Mode</span>
+                        </button>
                     </div>
                 </div>
-                <div style={{ padding: "0px 50px", display: "flex", justifyContent: "space-between"  }}>
-                    <Table data={priceList} callback={(data) => {console.log(data)}}/>
+                <div className="table" style={{ padding: "0px 50px 100px 50px", display: "flex", justifyContent: "space-between" }}>
+                    <Table data={priceList} callback={(data) => { console.log(data) }} />
                 </div>
             </div>
         </>

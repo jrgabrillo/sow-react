@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import invoices from '../assets/images/invoices.png'
 import customers from '../assets/images/customers.png'
@@ -15,33 +15,17 @@ import logout from '../assets/images/logout.png'
 import sweden from '../assets/images/sweden-flag.png'
 import brit from '../assets/images/brit-flag.png'
 
-export default function DashboardMenu() {
-    const [showMenu, setShowMenu] = useState(false);
-    const [showLanguage, setShowLanguage] = useState(false);
+export default function DashboardMenu({show}) {
 
-    // event for the humberger icon to toggle the menu
-    const toggleMenu = () => {
-        setShowMenu(prev => !prev);
-    };
+    console.log(show)
 
-    // event for the language selection 
-    const toggleLanguage = () => {
-        console.log(showLanguage)
-        setShowLanguage(prev => !prev);
-    };
+    useEffect(() => {
+        console.log(show)
 
-    // language menu
-    const LanguageSelection = () => {
-        return (
-            <div className="selection">
-                <a href="#" className="link"> Svenska <img src={sweden} alt="" className="flag" /></a>
-                <a href="#" className="link"> English <img src={brit} alt="" className="flag" /></a>
-            </div>
-        )
-    }
+    }, [])
 
     return (
-        <div className={`sidenav links ${showMenu ? "show" : ""}`} style={{ float: "left", background: "white", height: "100%", boxShadow: "#0000001a 10px 0px 20px 0px", overflow: "scroll" }}>
+        <div className={`sidenav links animate ${show ? "show" : ""}`} style={{ float: "left", background: "white", height: "100%", boxShadow: "#0000001a 10px 0px 20px 0px", overflow: "scroll", zIndex: 1}}>
             <p style={{color:"#000", borderBottom: "1px solid blue", margin: "10px 20px", textAlign: "center", fontSize: "20px"}}>Menu</p>
             <div style={{display: "flex", flexDirection: "column", margin: "0px 20px 20px 20px"}}>
                 <a href="#" className="link"><span className="indicator"></span> <img src={invoices} className="icon" />Invoices</a>
