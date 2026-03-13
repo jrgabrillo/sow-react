@@ -9,8 +9,8 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/login" element={<Login />} />
-                    <Route path="/" element={<Main />} />
+                    <Route exact path="/" element={<Login />} />
+                    <Route path="/dashboard" element={<Main />} />
                 </Routes>
             </BrowserRouter>
         )
