@@ -1,202 +1,94 @@
 export default class Base {
-    sendRequest = async ({ path, method = 'GET', data = {}, base, headers }) => {
-        let url = path;
+    async request({ path, method = "GET", data = null, headers = {} }) {
 
-        let config = {
+        const config = {
+            method,
             headers: {
-                'Content-Type': 'application/json'
-            },
-            method: method,
+                "Content-Type": "application/json",
+                ...headers
+            }
         };
 
-        if (headers)
-            config.headers = { ...config.headers, ...headers };
-
-        // console.info('%cNew connection has established', 'color: red');
-        // console.log({config, url, data});
-
-        if (method !== 'GET') {
+        if (method !== "GET" && data) 
             config.body = JSON.stringify(data);
-        }
 
-        let response = await fetch(url, config)
-            .then(async (res) => {
-                return res;
-            })
-            .catch((err) => {
-                if (err.message.match(/Network request failed/)) {
-                    // console.log({err: 'Failed to establish connection'});
-                    // alert("Please check your internet connection");
-                    return { network_error: true, ok: false };
-                }
-                return err;
-            });
-
-        if (response.network_error) {
-            return response;
-        }
-
-        // console.log(response, response.text());
-
-        let responseData = await response.text();
-
-        if (this.isJSON(responseData)) {
-            responseData = JSON.parse(responseData);
-        }
-
-        let output = {
-            ok: response?.ok,
-            data: responseData,
-            statusMessage: this.getStatusMessage(response.status),
-        };
-
-        // console.log(output);
-        return output;
-    };
-
-    isJSON = str => {
         try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-        return true;
-    };
+            const response = await fetch(path, config);
 
-    getStatusMessage = status_code => {
-        switch (status_code) {
-            case 100:
-                return 'Continue';
-            case 101:
-                return 'Switching Protocols';
-            case 102:
-                return 'Processing';
-            case 200:
-                return 'OK';
-            case 201:
-                return 'Created';
-            case 202:
-                return 'Accepted';
-            case 203:
-                return 'Non-authoritative Information';
-            case 204:
-                return 'No Content';
-            case 205:
-                return 'Reset Content';
-            case 206:
-                return 'Partial Content';
-            case 207:
-                return 'Multi-Status';
-            case 208:
-                return 'Already Reported';
-            case 226:
-                return 'IM Used';
-            case 300:
-                return 'Multiple Choices';
-            case 301:
-                return 'Moved Permanently';
-            case 302:
-                return 'Found';
-            case 303:
-                return 'See Other';
-            case 304:
-                return 'Not Modified';
-            case 305:
-                return 'Use Proxy';
-            case 307:
-                return 'Temporary Redirect';
-            case 308:
-                return 'Permanent Redirect';
-            case 400:
-                return 'Bad Request';
-            case 401:
-                return 'Unauthorized';
-            case 402:
-                return 'Payment Required';
-            case 403:
-                return 'Forbidden';
-            case 404:
-                return 'Not Found';
-            case 405:
-                return 'Method Not Allowed';
-            case 406:
-                return 'Not Acceptable';
-            case 407:
-                return 'Proxy Authentication Required';
-            case 408:
-                return 'Request Timeout';
-            case 409:
-                return 'Conflict';
-            case 410:
-                return 'Gone';
-            case 411:
-                return 'Length Required';
-            case 412:
-                return 'Precondition Failed';
-            case 413:
-                return 'Payload Too Large';
-            case 414:
-                return 'Request-URI Too Long';
-            case 415:
-                return 'Unsupported Media Type';
-            case 416:
-                return 'Requested Range Not Satisfiable';
-            case 417:
-                return 'Expectation Failed';
-            case 418:
-                return "I'm a teapot";
-            case 421:
-                return 'Misdirected Request';
-            case 422:
-                return 'Unprocessable Entity';
-            case 423:
-                return 'Locked';
-            case 424:
-                return 'Failed Dependency';
-            case 426:
-                return 'Upgrade Required';
-            case 428:
-                return 'Precondition Required';
-            case 429:
-                return 'Too Many Requests';
-            case 431:
-                return 'Request Header Fields Too Large';
-            case 444:
-                return 'Connection Closed Without Response';
-            case 451:
-                return 'Unavailable For Legal Reasons';
-            case 499:
-                return 'Client Closed Request';
-            case 500:
-                return 'Internal Server Error';
-            case 501:
-                return 'Not Implemented';
-            case 502:
-                return 'Bad Gateway';
-            case 503:
-                return 'Service Unavailable';
-            case 504:
-                return 'Gateway Timeout';
-            case 505:
-                return 'HTTP Version Not Supported';
-            case 506:
-                return 'Variant Also Negotiates';
-            case 507:
-                return 'Insufficient Storage';
-            case 508:
-                return 'Loop Detected';
-            case 510:
-                return 'Not Extended';
-            case 511:
-                return 'Network Authentication Required';
-            case 599:
-                return 'Network Connect Timeout Error';
-            default:
-                return 'Something went wrong: ' + status_code;
-        }
-    };
+            let responseData;
 
-    isEmpty = (data) => {
-        return ((data === null) || (data === undefined) || (data === "") || (data.length === 0))
+            try {
+                responseData = await response.json();
+            } 
+            catch {
+                responseData = await response.text();
+            }
+
+            return {
+                ok: response.ok,
+                data: responseData,
+                status: response.status,
+                statusMessage: this.getStatusMessage(response.status)
+            };
+
+        } 
+        catch (err) {
+
+            if (err.message?.includes("Network request failed")) {
+                return {
+                    ok: false,
+                    network_error: true,
+                    statusMessage: "Failed to establish connection"
+                };
+            }
+
+            return {
+                ok: false,
+                error: err.message
+            };
+        }
+    }
+
+    getStatusMessage(status) {
+        return Base.STATUS_MESSAGES[status] || `Something went wrong: ${status}`;
+    }
+
+    isEmpty(data) {
+        return (
+            data === null ||
+            data === undefined ||
+            data === "" ||
+            (Array.isArray(data) && data.length === 0)
+        );
     }
 }
+
+/* Static HTTP status dictionary (faster than switch) */
+Base.STATUS_MESSAGES = {
+    100: "Continue",
+    101: "Switching Protocols",
+    200: "OK",
+    201: "Created",
+    202: "Accepted",
+    204: "No Content",
+    300: "Multiple Choices",
+    301: "Moved Permanently",
+    302: "Found",
+    304: "Not Modified",
+    400: "Bad Request",
+    401: "Unauthorized",
+    403: "Forbidden",
+    404: "Not Found",
+    405: "Method Not Allowed",
+    408: "Request Timeout",
+    409: "Conflict",
+    413: "Payload Too Large",
+    415: "Unsupported Media Type",
+    422: "Unprocessable Entity",
+    429: "Too Many Requests",
+    500: "Internal Server Error",
+    501: "Not Implemented",
+    502: "Bad Gateway",
+    503: "Service Unavailable",
+    504: "Gateway Timeout"
+};

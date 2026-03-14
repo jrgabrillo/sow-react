@@ -50,7 +50,6 @@ export default function Main() {
     return (
         <>
             <Menu callback={(nav) => { setShowMenu(nav) }} />
-            {/* <Menu callback={(nav) => {console.log(nav)}} /> */}
             <SideNav show={showMenu} />
             <div className="container" style={{ background: "#fff", height: "100%", color: "#000", padding: "0px", overflow: "scroll" }}>
                 <div className="filters-actions" style={{ padding: "20px 50px", display: "flex", justifyContent: "space-between" }}>
@@ -60,16 +59,16 @@ export default function Main() {
                     </div>
                     <div className="actions" style={{ display: "flex", flexDirection: "row" }}>
                         <button>
-                            <img src={add} alt="new product icon" width="25px" />
                             <span>New Product</span>
+                            <img src={add} alt="new product icon" width="25px" />
                         </button>
                         <button>
-                            <img src={printing} alt="print icon" width="25px" />
                             <span>Print List</span>
+                            <img src={printing} alt="print icon" width="25px" />
                         </button>
                         <button disabled>
-                            <img src={toggle} alt="print icon" width="25px" />
                             <span>Advanced Mode</span>
+                            <img src={toggle} alt="print icon" width="25px" />
                         </button>
                     </div>
                 </div>
